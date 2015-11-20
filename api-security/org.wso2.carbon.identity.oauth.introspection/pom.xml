@@ -139,6 +139,7 @@
 			<artifactId>org.wso2.carbon.identity.oauth</artifactId>
 			<version>5.0.3-SNAPSHOT</version>
 			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.wso2.carbon.identity.oauth_5.0.3.SNAPSHOT.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
