@@ -4,7 +4,7 @@
 
 * Build the sample SPA from https://github.com/facilelogin/aratuwa/tree/master/oauth2.0-apps/org.wso2.carbon.identity.oauth.spa
 
-* Copy the artifact(amazon.war) created from above step to [CATALINA_HOME]\webapps
+* Copy the artifact(amazon.war) created from the above step to [CATALINA_HOME]\webapps
 
 * This sample assumes Apache Tomcat is running on localhost:8080 and WSO2 Identity Server 5.0.0 or 5.1.0 is running on localhost:9443
 
