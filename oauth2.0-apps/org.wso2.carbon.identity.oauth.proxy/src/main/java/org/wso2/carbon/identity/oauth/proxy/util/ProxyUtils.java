@@ -26,7 +26,8 @@ import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.oauth.proxy.bean.ErrorResponse;
 
 /**
- * this class is used to do utility functions within the proxy api.
+ * 
+ *
  */
 public class ProxyUtils {
 
@@ -37,7 +38,6 @@ public class ProxyUtils {
     public static final String REFRESH_TOKEN = "refresh_token";
     public static final String EXPIRATION = "expires_in";
     public static final String SPA_NAME = "spa_name";
-
 
     public static final String PROXY_API = "/";
 
@@ -67,36 +67,36 @@ public class ProxyUtils {
 
     static {
 
-	FileInputStream fileInputStream = null;
-	String configPath = System.getProperty(OAUTH_PROXY_CONFIG_PATH,
-		System.getProperty("carbon.home") + File.separator + "repository" + File.separator + "conf");
+        FileInputStream fileInputStream = null;
+        String configPath = System.getProperty(OAUTH_PROXY_CONFIG_PATH,
+                System.getProperty("carbon.home") + File.separator + "repository" + File.separator + "conf");
 
-	try {
-	    configPath = configPath + File.separator + PROXY_ROPERTIES_FILE;
-	    fileInputStream = new FileInputStream(new File(configPath));
-	    properties.load(fileInputStream);
-	} catch (FileNotFoundException e) {
-	    log.error(e);
-	    throw new RuntimeException(PROXY_ROPERTIES_FILE + " property file not found in " + configPath, e);
-	} catch (IOException e) {
-	    log.error(e);
-	    throw new RuntimeException(PROXY_ROPERTIES_FILE + " property file reading error from " + configPath, e);
-	} finally {
-	    if (fileInputStream != null) {
-		try {
-		    fileInputStream.close();
-		} catch (Exception exx) {
-		    log.error("Error occured while closing the file stream :" + exx);
-		}
-	    }
-	}
+        try {
+            configPath = configPath + File.separator + PROXY_ROPERTIES_FILE;
+            fileInputStream = new FileInputStream(new File(configPath));
+            properties.load(fileInputStream);
+        } catch (FileNotFoundException e) {
+            log.error(e);
+            throw new RuntimeException(PROXY_ROPERTIES_FILE + " property file not found in " + configPath, e);
+        } catch (IOException e) {
+            log.error(e);
+            throw new RuntimeException(PROXY_ROPERTIES_FILE + " property file reading error from " + configPath, e);
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception exx) {
+                    log.error("Error occured while closing the file stream :" + exx);
+                }
+            }
+        }
     }
 
     /**
      * status of the operation.
      */
     public enum OperationStatus {
-	SUCCESS, BAD_REQUEST, NOT_FOUND, FORBIDDEN, CREATED, INTERNAL_SERVER_ERROR
+        SUCCESS, BAD_REQUEST, NOT_FOUND, FORBIDDEN, CREATED, INTERNAL_SERVER_ERROR
     }
 
     /**
@@ -104,7 +104,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getAuthzEp() {
-	return getProperty(IS_SERVER_EP, null) + IS_AUTHORIZATION_EP;
+        return getProperty(IS_SERVER_EP, null) + IS_AUTHORIZATION_EP;
     }
 
     /**
@@ -112,7 +112,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getTokenEp() {
-	return getProperty(IS_SERVER_EP, null) + IS_TOKEN_EP;
+        return getProperty(IS_SERVER_EP, null) + IS_TOKEN_EP;
     }
 
     /**
@@ -121,7 +121,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getConsumerKey(String spaName) {
-	return getProperty(CLIENT_ID + "." + spaName, getProperty(CLIENT_ID, null));
+        return getProperty(CLIENT_ID + "." + spaName, getProperty(CLIENT_ID, null));
     }
 
     /**
@@ -130,7 +130,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getConsumerSecret(String spaName) {
-	return getProperty(CLIENT_SECRET + "." + spaName, getProperty(CLIENT_SECRET, null));
+        return getProperty(CLIENT_SECRET + "." + spaName, getProperty(CLIENT_SECRET, null));
 
     }
 
@@ -139,7 +139,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getAuthzGrantType() {
-	return OAUTH_GRANT_TYPE_CODE;
+        return OAUTH_GRANT_TYPE_CODE;
     }
 
     /**
@@ -148,7 +148,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getScope(String spaName) {
-	return getProperty(SCOPE + spaName.toLowerCase(), OPENID_SCOPE);
+        return getProperty(SCOPE + spaName.toLowerCase(), OPENID_SCOPE);
 
     }
 
@@ -158,7 +158,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getSpaCallbackUrl(String spaName) {
-	return getProperty(SP_CALLBACK_URL_MAPPING + spaName.toLowerCase(), null);
+        return getProperty(SP_CALLBACK_URL_MAPPING + spaName.toLowerCase(), null);
     }
 
     /**
@@ -167,7 +167,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getSpaLogoutUrl(String spaName) {
-	return getProperty(SP_CLOGOUT_URL_MAPPING + spaName.toLowerCase(), null);
+        return getProperty(SP_CLOGOUT_URL_MAPPING + spaName.toLowerCase(), null);
     }
 
     /**
@@ -175,7 +175,7 @@ public class ProxyUtils {
      * @return
      */
     public static String getCallbackUrl() {
-	return getProperty(PROXY_CALLBACK_URL, null);
+        return getProperty(PROXY_CALLBACK_URL, null);
     }
 
     /**
@@ -188,38 +188,38 @@ public class ProxyUtils {
      * @return
      */
     public static Response handleResponse(ProxyUtils.OperationStatus responseStatus, String code, String name,
-	    String detail) {
-	Response response;
+            String detail) {
+        Response response;
 
-	String message = name;
-	ErrorResponse resp = new ErrorResponse(code, name, detail);
+        String message = name;
+        ErrorResponse resp = new ErrorResponse(code, name, detail);
 
-	switch (responseStatus) {
-	case CREATED:
-	    response = Response.created(URI.create(message)).build();
-	    break;
-	case SUCCESS:
-	    response = Response.ok().entity(resp).build();
-	    break;
-	case BAD_REQUEST:
-	    response = Response.status(HttpStatus.SC_BAD_REQUEST).entity(resp).build();
-	    break;
-	case NOT_FOUND:
-	    response = Response.status(HttpStatus.SC_NOT_FOUND).entity(resp).build();
-	    break;
-	case FORBIDDEN:
-	    response = Response.status(HttpStatus.SC_UNAUTHORIZED).entity(resp).build();
-	    break;
-	case INTERNAL_SERVER_ERROR:
-	    response = Response.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).entity(resp).build();
-	    break;
-	default:
-	    response = Response.noContent().build();
-	}
-	if (log.isDebugEnabled()) {
-	    log.debug(resp.toString());
-	}
-	return response;
+        switch (responseStatus) {
+        case CREATED:
+            response = Response.created(URI.create(message)).build();
+            break;
+        case SUCCESS:
+            response = Response.ok().entity(resp).build();
+            break;
+        case BAD_REQUEST:
+            response = Response.status(HttpStatus.SC_BAD_REQUEST).entity(resp).build();
+            break;
+        case NOT_FOUND:
+            response = Response.status(HttpStatus.SC_NOT_FOUND).entity(resp).build();
+            break;
+        case FORBIDDEN:
+            response = Response.status(HttpStatus.SC_UNAUTHORIZED).entity(resp).build();
+            break;
+        case INTERNAL_SERVER_ERROR:
+            response = Response.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).entity(resp).build();
+            break;
+        default:
+            response = Response.noContent().build();
+        }
+        if (log.isDebugEnabled()) {
+            log.debug(resp.toString());
+        }
+        return response;
     }
 
     /**
@@ -229,8 +229,8 @@ public class ProxyUtils {
      * @return
      */
     private static String getProperty(String key, String defaultValue) {
-	String propValue = (String) properties.get(key);
-	return propValue != null && !propValue.trim().isEmpty() ? propValue.trim() : defaultValue;
+        String propValue = (String) properties.get(key);
+        return propValue != null && !propValue.trim().isEmpty() ? propValue.trim() : defaultValue;
     }
 
     /**
@@ -246,27 +246,27 @@ public class ProxyUtils {
      * @throws InvalidAlgorithmParameterException
      */
     public static String encrypt(String plaintext)
-	    throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException,
-	    UnsupportedEncodingException, InvalidKeyException, InvalidAlgorithmParameterException {
+            throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException,
+            UnsupportedEncodingException, InvalidKeyException, InvalidAlgorithmParameterException {
 
-	String key = properties.getProperty(SECRET_KEY);
+        String key = properties.getProperty(SECRET_KEY);
 
-	if (key == null) {
-	    throw new InvalidKeyException("No secret key is defined in the configuration file.");
-	}
+        if (key == null) {
+            throw new InvalidKeyException("No secret key is defined in the configuration file.");
+        }
 
-	String initVector = properties.getProperty(IV);
+        String initVector = properties.getProperty(IV);
 
-	if (initVector == null) {
-	    throw new InvalidKeyException("No initialization vector is defined in the configuration file.");
-	}
+        if (initVector == null) {
+            throw new InvalidKeyException("No initialization vector is defined in the configuration file.");
+        }
 
-	IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-	SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
-	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-	cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-	byte[] encrypted = cipher.doFinal(plaintext.getBytes());
-	return Base64.encode(encrypted);
+        IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+        byte[] encrypted = cipher.doFinal(plaintext.getBytes());
+        return Base64.encode(encrypted);
 
     }
 
@@ -283,28 +283,28 @@ public class ProxyUtils {
      * @throws InvalidAlgorithmParameterException
      */
     public static String decrypt(String encrypted)
-	    throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
-	    IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+            throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
+            IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
 
-	String key = properties.getProperty(SECRET_KEY);
+        String key = properties.getProperty(SECRET_KEY);
 
-	if (key == null) {
-	    throw new InvalidKeyException("No secret key is defined in the configuration file.");
-	}
+        if (key == null) {
+            throw new InvalidKeyException("No secret key is defined in the configuration file.");
+        }
 
-	String initVector = properties.getProperty(IV);
+        String initVector = properties.getProperty(IV);
 
-	if (initVector == null) {
-	    throw new InvalidKeyException("No initialization vector is defined in the configuration file.");
-	}
+        if (initVector == null) {
+            throw new InvalidKeyException("No initialization vector is defined in the configuration file.");
+        }
 
-	IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-	SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+        IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-	cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-	byte[] original = cipher.doFinal(Base64.decode(encrypted));
-	return new String(original);
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+        byte[] original = cipher.doFinal(Base64.decode(encrypted));
+        return new String(original);
     }
 
 }
