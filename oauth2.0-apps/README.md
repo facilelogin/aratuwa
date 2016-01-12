@@ -16,14 +16,14 @@
 
 * Add following properties to the file oauth_proxy.properties
 
-is_server_ep=https://localhost:9443
-client_id=6ktdbCJgmQIqlO1tNiHBQoVelkUa
-client_secret=cg5Gg8PfwI28NjLRy64pyffcK4Ia
-proxy_callback_url=https://localhost:9443/oauth2-proxy/callback
-sp_callback_url_mapping.sample1=http://localhost:8080/amazon/in.html
-sp_logout_url_mapping.sample1=http://localhost:8080/amazon/index.html
-iv=RandomInitVector
-secret_key=Bar12345Bar12345
+>is_server_ep=https://localhost:9443
+>client_id=6ktdbCJgmQIqlO1tNiHBQoVelkUa
+>client_secret=cg5Gg8PfwI28NjLRy64pyffcK4Ia
+>proxy_callback_url=https://localhost:9443/oauth2-proxy/callback
+>sp_callback_url_mapping.sample1=http://localhost:8080/amazon/in.html
+>sp_logout_url_mapping.sample1=http://localhost:8080/amazon/index.html
+>iv=RandomInitVector
+>secret_key=Bar12345Bar12345
 
 * The value of the client_id and the client_secret should be copied from the service provider you created in Identity Server
 
