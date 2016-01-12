@@ -1,6 +1,6 @@
 #OAuth 2.0 Applications
 
-## A stateless OAuth 2.0 proxy for Single Page Applications (SPAs)
+## 1. A stateless OAuth 2.0 proxy for Single Page Applications (SPAs)
 
 * Build the sample SPA from https://github.com/facilelogin/aratuwa/tree/master/oauth2.0-apps/org.wso2.carbon.identity.oauth.spa
 
