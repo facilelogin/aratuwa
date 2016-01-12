@@ -11,10 +11,8 @@ public class ProxyFaultCodes {
     public static final String ERROR_002 = "ERROR_002";
     // internal server error
     public static final String ERROR_003 = "ERROR_003";
-    // invalid captcha
-    public static final String ERROR_004 = "ERROR_004";
-    // spa not found
-    public static final String ERROR_008 = "ERROR_008";
+    // service provider not found
+    public static final String ERROR_008 = "ERROR_004";
     // authentication failure
     public static final String ERROR_010 = "ERROR_010";
 

@@ -22,7 +22,7 @@ import org.apache.amber.oauth2.client.response.OAuthClientResponse;
 import org.apache.amber.oauth2.common.exception.OAuthProblemException;
 import org.apache.amber.oauth2.common.exception.OAuthSystemException;
 import org.apache.amber.oauth2.common.message.types.GrantType;
-import org.apache.axiom.om.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.cxf.jaxrs.ext.MessageContext;
@@ -86,7 +86,7 @@ public class LoginProxy {
 	// get the grant type. the proxy works only with the authorization code grant type.
 	String authzGrantType = ProxyUtils.getAuthzGrantType();
 	// get the scope associated with the spa. each spa can define its own scopes in the oauth_proxy.properties file,
-	// but in each case openid is used as a manadatory scope value.
+	// but in each case openid is used as a mandatory scope value.
 	String scope = ProxyUtils.getScope(spaName);
 	// load the callback url of the proxy. there is only one callback url. even when you create multiple service
 	// providers in identity server to get multiple client key/client secret pairs, the callback url would be the
@@ -305,8 +305,8 @@ public class LoginProxy {
      * @param base64UrlEncodedStr
      * @return
      */
-    private String base64UrlDecode(String base64UrlEncodedStr) {
-	return new String(Base64.decode(base64UrlEncodedStr.replace("-", "+").replace("_", "/")));
+    private static String base64UrlDecode(String base64UrlEncodedStr) {
+	return new String(Base64.decodeBase64(base64UrlEncodedStr.getBytes()));
     }
 
 }
