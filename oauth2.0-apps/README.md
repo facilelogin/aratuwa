@@ -37,7 +37,7 @@
 
 * The value of is_server property must point to the Identity Server.
 
-* Build the OAuth 2.0 proxy app from https://github.com/facilelogin/aratuwa/tree/master/oauth2.0-apps/org.wso2.carbon.identity.oauth.proxy and copy target/oauth2-proxy.war to IS_HOME/repository/deployment/server/wenapps
+* Build the OAuth 2.0 proxy app from https://github.com/facilelogin/aratuwa/tree/master/oauth2.0-apps/org.wso2.carbon.identity.oauth.proxy and copy target/oauth2-proxy.war to IS_HOME/repository/deployment/server/webapps
 
 * Restart the Identity Server.
 
