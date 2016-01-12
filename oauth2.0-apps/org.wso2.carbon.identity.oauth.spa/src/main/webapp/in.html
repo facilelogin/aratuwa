@@ -1,0 +1,33 @@
+<html>
+<body>
+	<script>
+		function httpGet() {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp
+					.open(
+							"GET",
+							"https://localhost:9443/oauth2-proxy/users?code=" + sessionStorage.getItem("guid"),
+							false);
+			xmlHttp.send(null);
+			var obj = JSON.parse(xmlHttp.responseText);
+			return obj.sub;
+		}
+	</script>
+
+	<table style="table-layout: fixed; width: 100%">
+		<tr>
+			<td><script>
+				document.write(httpGet());
+			</script></td>
+		</tr>
+		</table><table>
+		<tr>
+			<td align="center"><img width="1000" align="middle" height="600"
+				src="images/2.png" /></td>
+		</tr>
+		<tr>
+			<td style="max-width: 150px;"></td>
+		</tr>
+	</table>
+</body>
+</html>
