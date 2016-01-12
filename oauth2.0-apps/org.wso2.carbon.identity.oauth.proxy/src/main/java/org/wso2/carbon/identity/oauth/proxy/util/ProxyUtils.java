@@ -36,6 +36,8 @@ public class ProxyUtils {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String REFRESH_TOKEN = "refresh_token";
     public static final String EXPIRATION = "expires_in";
+    public static final String SPA_NAME = "spa_name";
+
 
     public static final String PROXY_API = "/";
 
@@ -56,7 +58,8 @@ public class ProxyUtils {
 
     private static final String PROXY_ROPERTIES_FILE = "oauth_proxy.properties";
     private static final String OAUTH_PROXY_CONFIG_PATH = "oauth.proxy.property.file.path";
-    private static final String SP_CALLBACL_URL_MAPPING = "sp_callback_url_mapping.";
+    private static final String SP_CALLBACK_URL_MAPPING = "sp_callback_url_mapping.";
+    private static final String SP_CLOGOUT_URL_MAPPING = "sp_logout_url_mapping.";
 
     private static final String PROXY_CALLBACK_URL = "proxy_callback_url";
 
@@ -65,8 +68,8 @@ public class ProxyUtils {
     static {
 
 	FileInputStream fileInputStream = null;
-	String configPath = System.getProperty(OAUTH_PROXY_CONFIG_PATH, System.getProperty("carbon.home")
-		+ File.separator + "repository" + File.separator + "conf");
+	String configPath = System.getProperty(OAUTH_PROXY_CONFIG_PATH,
+		System.getProperty("carbon.home") + File.separator + "repository" + File.separator + "conf");
 
 	try {
 	    configPath = configPath + File.separator + PROXY_ROPERTIES_FILE;
@@ -154,8 +157,17 @@ public class ProxyUtils {
      * @param spName
      * @return
      */
-    public static String getCallbackUrl(String spName) {
-	return getProperty(SP_CALLBACL_URL_MAPPING + spName.toLowerCase(), null);
+    public static String getSpaCallbackUrl(String spaName) {
+	return getProperty(SP_CALLBACK_URL_MAPPING + spaName.toLowerCase(), null);
+    }
+
+    /**
+     * 
+     * @param spName
+     * @return
+     */
+    public static String getSpaLogoutUrl(String spaName) {
+	return getProperty(SP_CLOGOUT_URL_MAPPING + spaName.toLowerCase(), null);
     }
 
     /**
@@ -233,9 +245,9 @@ public class ProxyUtils {
      * @throws InvalidKeyException
      * @throws InvalidAlgorithmParameterException
      */
-    public static String encrypt(String plaintext) throws NoSuchAlgorithmException, NoSuchPaddingException,
-	    IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException, InvalidKeyException,
-	    InvalidAlgorithmParameterException {
+    public static String encrypt(String plaintext)
+	    throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException,
+	    UnsupportedEncodingException, InvalidKeyException, InvalidAlgorithmParameterException {
 
 	String key = properties.getProperty(SECRET_KEY);
 
@@ -248,7 +260,7 @@ public class ProxyUtils {
 	if (initVector == null) {
 	    throw new InvalidKeyException("No initialization vector is defined in the configuration file.");
 	}
-	
+
 	IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
 	SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 	Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
@@ -270,9 +282,9 @@ public class ProxyUtils {
      * @throws InvalidKeyException
      * @throws InvalidAlgorithmParameterException
      */
-    public static String decrypt(String encrypted) throws UnsupportedEncodingException, NoSuchAlgorithmException,
-	    NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException,
-	    InvalidAlgorithmParameterException {
+    public static String decrypt(String encrypted)
+	    throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
+	    IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
 
 	String key = properties.getProperty(SECRET_KEY);
 

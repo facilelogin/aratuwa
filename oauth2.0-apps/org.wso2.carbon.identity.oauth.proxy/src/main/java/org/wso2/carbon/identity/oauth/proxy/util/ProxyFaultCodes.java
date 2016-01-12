@@ -12,7 +12,7 @@ public class ProxyFaultCodes {
     // internal server error
     public static final String ERROR_003 = "ERROR_003";
     // service provider not found
-    public static final String ERROR_008 = "ERROR_004";
+    public static final String ERROR_004 = "ERROR_004";
     // authentication failure
     public static final String ERROR_010 = "ERROR_010";
 

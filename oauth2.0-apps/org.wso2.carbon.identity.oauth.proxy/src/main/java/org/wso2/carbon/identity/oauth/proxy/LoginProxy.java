@@ -139,6 +139,16 @@ public class LoginProxy {
     @GET
     public Response handleCallback(@QueryParam("code") String code, @QueryParam("state") String state) {
 
+	if (code == null || code.isEmpty()) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.BAD_REQUEST, ProxyFaultCodes.ERROR_002,
+		    ProxyFaultCodes.Name.INVALID_INPUTS, "The value of the code cannot be null.");
+	}
+	
+	if (state == null || state.isEmpty()) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.BAD_REQUEST, ProxyFaultCodes.ERROR_002,
+		    ProxyFaultCodes.Name.INVALID_INPUTS, "The value of the state cannot be null.");
+	}
+	
 	HttpServletResponse resp = context.getHttpServletResponse();
 	HttpServletRequest req = context.getHttpServletRequest();
 	Cookie[] cookies = req.getCookies();
@@ -228,6 +238,7 @@ public class LoginProxy {
 	    json.put(ProxyUtils.ID_TOKEN, idToken);
 	    json.put(ProxyUtils.ACCESS_TOKEN, accessToken);
 	    json.put(ProxyUtils.REFRESH_TOKEN, refreshToken);
+	    json.put(ProxyUtils.SPA_NAME, spaName);
 	    json.put(ProxyUtils.EXPIRATION, new Long(expiration));
 	} catch (JSONException e) {
 	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.INTERNAL_SERVER_ERROR,
@@ -246,9 +257,63 @@ public class LoginProxy {
 	    resp.addCookie(cookie);
 	    // get the spa callback ur. each spa has its own callback url, which is defined in the
 	    // oauth_proxy.properties file
-	    resp.sendRedirect(ProxyUtils.getCallbackUrl(spaName));
+	    resp.sendRedirect(ProxyUtils.getSpaCallbackUrl(spaName));
 	    return null;
 	} catch (Exception e) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.INTERNAL_SERVER_ERROR,
+		    ProxyFaultCodes.ERROR_003, ProxyFaultCodes.Name.INTERNAL_SERVER_ERROR, e.getMessage());
+	}
+    }
+
+    /**
+     * clears all the cookies corresponding all the service providers.
+     * @param code
+     * @return
+     */
+    @Path("logout")
+    @GET
+    public Response logout(@QueryParam("code") String code) {
+	
+	if (code == null || code.isEmpty()) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.BAD_REQUEST, ProxyFaultCodes.ERROR_002,
+		    ProxyFaultCodes.Name.INVALID_INPUTS, "The value of the code cannot be null.");
+	}
+
+	HttpServletRequest req = context.getHttpServletRequest();
+	HttpServletResponse resp = context.getHttpServletResponse();
+
+	Cookie[] cookies = req.getCookies();
+	String spaName = null;
+
+	// try to load the cookie corresponding to the value of the code.
+	if (cookies != null && cookies.length > 0) {
+	    for (int i = 0; i < cookies.length; i++) {
+		if (cookies[i].getName().equals(code) && spaName == null) {
+		    JSONObject json;
+		    try {
+			json = new JSONObject(ProxyUtils.decrypt(cookies[i].getValue()));
+			spaName = json.getString(ProxyUtils.SPA_NAME);
+		    } catch (Exception e) {
+			return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.INTERNAL_SERVER_ERROR,
+				ProxyFaultCodes.ERROR_003, ProxyFaultCodes.Name.INTERNAL_SERVER_ERROR, e.getMessage());
+		    }
+		}
+		cookies[i].setMaxAge(0);
+		cookies[i].setValue("");
+		resp.addCookie(cookies[i]);
+	    }
+	}
+
+	if (spaName == null) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.INTERNAL_SERVER_ERROR,
+		    ProxyFaultCodes.ERROR_004, ProxyFaultCodes.Name.SERVICE_PROVIDER_DOES_NOT_EXIST,
+		    "No spa found for corresponding to the provided code");
+	}
+
+	try {
+	    resp.sendRedirect(ProxyUtils.getSpaLogoutUrl(spaName));
+	    return null;
+	} catch (IOException e) {
 	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.INTERNAL_SERVER_ERROR,
 		    ProxyFaultCodes.ERROR_003, ProxyFaultCodes.Name.INTERNAL_SERVER_ERROR, e.getMessage());
 	}
@@ -264,6 +329,11 @@ public class LoginProxy {
     @Path("users")
     @GET
     public Response getUserInfo(@QueryParam("code") String code) {
+	
+	if (code == null || code.isEmpty()) {
+	    return ProxyUtils.handleResponse(ProxyUtils.OperationStatus.BAD_REQUEST, ProxyFaultCodes.ERROR_002,
+		    ProxyFaultCodes.Name.INVALID_INPUTS, "The value of the code cannot be null.");
+	}
 
 	HttpServletRequest req = context.getHttpServletRequest();
 	Cookie[] cookies = req.getCookies();

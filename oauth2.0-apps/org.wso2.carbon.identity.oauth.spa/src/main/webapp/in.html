@@ -6,7 +6,7 @@
 			xmlHttp
 					.open(
 							"GET",
-							"https://localhost:9443/oauth2-proxy/users?code=" + sessionStorage.getItem("guid"),
+							"https://idp.fidelity.com:9443/oauth2-proxy/users?code=" + sessionStorage.getItem("guid"),
 							false);
 			xmlHttp.send(null);
 			var obj = JSON.parse(xmlHttp.responseText);
@@ -19,8 +19,10 @@
 			<td><script>
 				document.write(httpGet());
 			</script></td>
+			<td><a id="logout-link">Logout</a></td>
 		</tr>
-		</table><table>
+	</table>
+	<table>
 		<tr>
 			<td align="center"><img width="1000" align="middle" height="600"
 				src="images/2.png" /></td>
@@ -29,5 +31,9 @@
 			<td style="max-width: 150px;"></td>
 		</tr>
 	</table>
+	
+	<script type="text/javascript">
+		document.getElementById('logout-link').href="https://localhost:9443/oauth2-proxy/logout?code=" + sessionStorage.getItem("guid");
+	</script>
 </body>
 </html>

@@ -26,7 +26,7 @@
 				<version>2.2</version>
 				<configuration>
 					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
-					<warName>myspa</warName>
+					<warName>amazon</warName>
 				</configuration>
 			</plugin>
 		</plugins>
