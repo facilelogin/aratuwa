@@ -6,7 +6,7 @@
 			xmlHttp
 					.open(
 							"GET",
-							"https://idp.fidelity.com:9443/oauth2-proxy/users?code=" + sessionStorage.getItem("guid"),
+							"https://localhost:9443/oauth2-proxy/users?code=" + sessionStorage.getItem("guid"),
 							false);
 			xmlHttp.send(null);
 			var obj = JSON.parse(xmlHttp.responseText);
