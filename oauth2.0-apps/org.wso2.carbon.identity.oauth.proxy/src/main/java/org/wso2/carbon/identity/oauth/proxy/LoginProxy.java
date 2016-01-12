@@ -33,7 +33,7 @@ import org.wso2.carbon.identity.oauth.proxy.util.ProxyUtils;
 
 /**
  * this endpoint acts a proxy endpoint single page applications(spa). to authenticate a user, the spa must do a GET to
- * the /login endpoint wth spaName and code parameters. spaName is a unique identifier for each spa, and the proxy app
+ * the /login endpoint with spaName and code parameters. spaName is a unique identifier for each spa, and the proxy app
  * should be aware of that identifier.the proxy endpoint uses the spaName later to load the callback url corresponding
  * to the spa. the code is a random generated number by the spa. spa should gurantee its randmoness. each times the spa
  * gets rendered on the browser it has to generate the code.spas should not uses statically configured code values.
