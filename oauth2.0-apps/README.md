@@ -27,7 +27,7 @@ sp_callback_url_mapping.sample1=http://localhost:8080/amazon/in.html
 sp_logout_url_mapping.sample1=http://localhost:8080/amazon/index.html
 iv=RandomInitVector
 secret_key=Bar12345Bar12345
-
+```
 * The value of the client_id and the client_secret should be copied from the service provider you created in Identity Server
 
 * The value of the proxy_callback_url should match the callback URL you configured when creating a service provider in Identity Server
