@@ -8,7 +8,7 @@
 
 * This sample assumes Apache Tomcat is running on localhost:8080 and WSO2 Identity Server 5.0.0 or 5.1.0 is running on localhost:9443
 
-* If you use different hostnames or ports, change hostname and the port inside [CATALINA_HOME]\webapps\amazon\index.html and in.html
+* If you use different hostnames or ports, change the hostname and the port inside [CATALINA_HOME]\webapps\amazon\index.html and in.html
 
 * Also note that the value **spaName** query parameter in [CATALINA_HOME]\webapps\amazon\index.html it should match the value **sample1**, which we define later in **oauth_proxy.properties**, if you change this value make sure you change both the places.
 
