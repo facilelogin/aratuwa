@@ -21,6 +21,20 @@ auth_req.json:
    "password": "admin"
 }
 ```
+```javascript
+Response:
+
+HTTP/1.1 200 OK
+{  
+   "username":"admin",
+   "user_claims":[  
+
+   ],
+   "roles":[  
+
+   ]
+}
+```
 
 * Following is an example cURL request to authenticate a user and get all his roles.
 
@@ -36,6 +50,22 @@ auth_req.json:
    "with_roles": true
 }
 ```
+```javascript
+Response:
+
+HTTP/1.1 200 OK
+{  
+   "username":"admin",
+   "user_claims":[  
+
+   ],
+   "roles":[  
+      "admin",
+      "Application/oauth2-proxy",
+      "Internal/everyone"
+   ]
+}
+```
 
 * Following is an example cURL request to authenticate a user and get all his roles and a selected set of claims.
 
@@ -49,9 +79,28 @@ auth_req.json:
 {  "username": "admin",
    "password": "admin",
    "with_roles" : true,
-   "claims" : ["http://wso2.org/claims2/emailaddress"]
+   "claims" : ["http://wso2.org/claims/emailaddress"]
 }
 
 ```
+```javascript
+Response:
 
-
+HTTP/1.1 200 OK
+{  
+   "username":"admin",
+   "user_claims":[  
+      {  
+         "claim_uri":"http://wso2.org/claims/emailaddress",
+         "value":[  
+            "admin@wso2.com"
+         ]
+      }
+   ],
+   "roles":[  
+      "admin",
+      "Application/oauth2-proxy",
+      "Internal/everyone"
+   ]
+}
+```
