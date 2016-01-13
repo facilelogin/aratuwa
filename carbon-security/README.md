@@ -17,7 +17,8 @@ curl -k -v  -H "Content-Type: application/json"  -X POST -d @auth_req.json https
 ```javascript
 auth_req.json:
 
-{  "username": "admin",
+{ 
+   "username": "admin",
    "password": "admin"
 }
 ```
@@ -45,7 +46,8 @@ curl -k -v  -H "Content-Type: application/json"  -X POST -d @auth_req.json https
 ```javascript
 auth_req.json:
 
-{  "username": "admin",
+{  
+   "username": "admin",
    "password": "admin",
    "with_roles": true
 }
@@ -76,7 +78,8 @@ curl -k -v  -H "Content-Type: application/json"  -X POST -d @auth_req.json https
 ```javascript
 auth_req.json:
 
-{  "username": "admin",
+{  
+   "username": "admin",
    "password": "admin",
    "with_roles" : true,
    "claims" : ["http://wso2.org/claims/emailaddress"]
