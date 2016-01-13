@@ -8,13 +8,11 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.user.api.UserRealm;
 import org.wso2.carbon.user.core.service.RealmService;
@@ -33,10 +31,6 @@ import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 public class LoginResource {
 
     private final static Log log = LogFactory.getLog(LoginResource.class);
-
-    // keeps track of HttpServletRequest and HttpServletResponse
-    @Context
-    private MessageContext context;
 
     /**
      * the login API can be invoked with different parameters, asking for all the roles of the user who authenticates,
@@ -62,6 +56,12 @@ public class LoginResource {
         // get a handle to the RealmService OSGi service
         realmService = (RealmService) PrivilegedCarbonContext.getThreadLocalCarbonContext()
                 .getOSGiService(RealmService.class, new Hashtable<String, String>());
+
+        if (realmService == null) {
+            log.error("RealmService not available.");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{'error':'The realmservice not availebale' }").build();
+        }
 
         try {
 
