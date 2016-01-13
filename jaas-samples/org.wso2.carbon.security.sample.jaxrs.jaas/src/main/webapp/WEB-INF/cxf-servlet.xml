@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd   http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <jaxrs:server id="oauth2ProxyService" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="loginProxy"/>  
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jacksonJsonProvider"/>
+        </jaxrs:providers>
+
+    </jaxrs:server>
+
+    <bean id="loginProxy" class="org.wso2.carbon.identity.oauth.proxy.LoginProxy"/>
+    <!-- bean id="apiPorxy" class="org.wso2.carbon.identity.oauth.proxy.APIProxy"/ -->
+
+    <bean id="jacksonJsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
+
+
+</beans>
