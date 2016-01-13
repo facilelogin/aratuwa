@@ -1,5 +1,6 @@
-{  "username": "admin",
+{  
+   "username": "admin",
    "password": "admin",
    "with_roles" : true,
-   "claims" : ["http://wso2.org/claims2/emailaddress"]
+   "claims" : ["http://wso2.org/claims/emailaddress", "http://wso2.org/claims/givenname"]
 }
