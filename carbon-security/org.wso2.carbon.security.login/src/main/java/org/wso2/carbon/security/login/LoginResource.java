@@ -60,7 +60,7 @@ public class LoginResource {
         if (realmService == null) {
             log.error("RealmService not available.");
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("{'error':'The realmservice not availebale' }").build();
+                    .entity("{'error':'The realmservice not available' }").build();
         }
 
         try {
