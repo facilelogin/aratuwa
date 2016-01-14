@@ -58,9 +58,9 @@ public class CarbonLoginModule implements LoginModule {
 
     private final static Log log = LogFactory.getLog(CarbonLoginModule.class);
     private CallbackHandler callbackHandler;
-    protected Principal principal = null;
+    private Principal principal = null;
     private Subject subject;
-    protected boolean committed = false;
+    private boolean committed = false;
 
     /**
      * the initialize method is called to initialize the LoginModule with the relevant authentication and state

@@ -31,6 +31,15 @@ public class CarbonPermission extends BasicPermission {
      */
     public CarbonPermission(String resource, String action) {
         super(resource, action);
+
+        if (action == null || action.isEmpty()) {
+            throw new IllegalArgumentException("Permission action cannot be null");
+        }
+
+        if (resource == null || resource.isEmpty()) {
+            throw new IllegalArgumentException("Permission name cannot be null");
+        }
+
         if (log.isDebugEnabled()) {
             log.debug("A CarbonPermission object is created for resource: " + resource + " and action: " + action);
         }
@@ -42,7 +51,7 @@ public class CarbonPermission extends BasicPermission {
     @Override
     public boolean implies(Permission permission) {
 
-        // we do not need to worry about is it not a CarbonPermission
+        // we do not need to worry about - if it is not a CarbonPermission
         if (!(permission instanceof CarbonPermission)) {
             return super.implies(permission);
         }

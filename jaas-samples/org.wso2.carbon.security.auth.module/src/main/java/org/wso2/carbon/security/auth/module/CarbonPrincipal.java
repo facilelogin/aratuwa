@@ -85,11 +85,16 @@ public class CarbonPrincipal implements Principal {
         Map<String, String> userClaims = null;
 
         try {
+            List<ClaimValue> claimList = new ArrayList<ClaimValue>();
+
+            if (attrNames == null || attrNames.isEmpty()) {
+                // no need to proceed further.
+                return claimList;
+            }
+
             userClaims = realm.getUserStoreManager().getUserClaimValues(
                     MultitenantUtils.getTenantAwareUsername(username), attrNames.toArray(new String[attrNames.size()]),
                     profileConfg);
-
-            List<ClaimValue> claimList = new ArrayList<ClaimValue>();
 
             if (userClaims != null && !userClaims.isEmpty()) {
                 for (Map.Entry<String, String> entry : userClaims.entrySet()) {
@@ -106,18 +111,24 @@ public class CarbonPrincipal implements Principal {
     }
 
     /**
+     * this method is not visible to downstream applications. only visible to the <code>CarbonPermission</code> class or to
+     * anyone who extends this class.
      * 
      * @param permission
      * @return
      * @throws CarbonSecurityException
      */
-    public boolean isAuthorized(CarbonPermission permission) throws CarbonSecurityException {
+    protected boolean isAuthorized(CarbonPermission permission) throws CarbonSecurityException {
         try {
+
+            if (permission == null) {
+                throw new IllegalArgumentException("Permission object cannot be null");
+            }
+
             return realm.getAuthorizationManager().isUserAuthorized(MultitenantUtils.getTenantAwareUsername(username),
                     permission.getName(), permission.getActions());
         } catch (UserStoreException e) {
             throw new CarbonSecurityException(e);
-
         }
     }
 
