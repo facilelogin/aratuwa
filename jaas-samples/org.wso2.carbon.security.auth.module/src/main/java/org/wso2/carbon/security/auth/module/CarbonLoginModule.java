@@ -113,7 +113,7 @@ public class CarbonLoginModule implements LoginModule {
             int tenantId = realmService.getTenantManager().getTenantId(tenantDomain);
 
             if (log.isDebugEnabled()) {
-                log.debug("Login request from: Usename: " + tenantAwareUsername + " Tenant Domain: " + tenantDomain);
+                log.debug("Login request from: Username: " + tenantAwareUsername + " Tenant Domain: " + tenantDomain);
             }
 
             userRealm = realmService.getTenantUserRealm(tenantId);
