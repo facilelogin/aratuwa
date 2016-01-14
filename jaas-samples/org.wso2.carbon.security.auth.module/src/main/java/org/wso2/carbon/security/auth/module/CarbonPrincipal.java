@@ -1,5 +1,6 @@
 package org.wso2.carbon.security.auth.module;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,13 @@ import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
  * <code>Subject</code> to find user attributes groups and roles.
  *
  */
-public class CarbonPrincipal implements Principal {
+public class CarbonPrincipal implements Principal,Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8062674197370333892L;
+    
     protected String username;
     protected UserRealm realm;
 
