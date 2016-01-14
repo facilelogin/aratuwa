@@ -126,11 +126,8 @@ public class CarbonLoginModule implements LoginModule {
             }
 
         } catch (Exception e) {
-            if (isAuthenticated) {
-                log.error("Login passed but failed due to an internal error", e);
-            } else {
-                log.error("Login failure due to an internal error", e);
-            }
+            log.error(e);
+            throw new FailedLoginException("Invalid username or password.");
         }
 
         return true;
