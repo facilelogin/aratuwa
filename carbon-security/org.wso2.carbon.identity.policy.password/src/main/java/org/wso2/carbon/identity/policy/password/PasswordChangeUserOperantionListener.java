@@ -29,34 +29,49 @@ import org.wso2.carbon.user.core.common.AbstractUserOperationEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * the responsibility of this class is to update the user claim
+ * http://wso2.org/claims/lastPasswordChangedTimestamp upon the password change.
+ *
+ */
 public class PasswordChangeUserOperantionListener extends AbstractUserOperationEventListener {
 
-    private static Log log = LogFactory.getLog(PasswordChangeUserOperantionListener.class);
+	private static Log log = LogFactory.getLog(PasswordChangeUserOperantionListener.class);
 
-    private static final String LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM = "http://wso2.org/claims/lastPasswordChangedTimestamp";
+	@Override
+	public int getExecutionOrderId() {
+		return 1356;
+	}
 
-    @Override
-    public int getExecutionOrderId() {
-        return 1356;
-    }
+	@Override
+	public boolean doPostUpdateCredentialByAdmin(String userName, Object credential, UserStoreManager userStoreManager)
+			throws UserStoreException {
+		Map<String, String> claimMap = new HashMap<String, String>();
+		long timestamp = System.currentTimeMillis();
+		claimMap.put(Utils.LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, Long.toString(timestamp));
+		userStoreManager.setUserClaimValues(userName, claimMap, null);
 
-    @Override
-    public boolean doPostUpdateCredentialByAdmin(String userName, Object credential, UserStoreManager userStoreManager)
-            throws UserStoreException {
-        Map<String, String> claimMap = new HashMap<String, String>();
-        long timestamp = System.currentTimeMillis();
-        claimMap.put(LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, Long.toString(timestamp));
-        userStoreManager.setUserClaimValues(userName, claimMap, null);
-        return true;
-    }
+		if (log.isDebugEnabled()) {
+			log.debug("The claim uri http://wso2.org/claims/lastPasswordChangedTimestamp of " + userName
+					+ " updated with the current timestamp");
+		}
 
-    @Override
-    public boolean doPostUpdateCredential(String userName, Object credential, UserStoreManager userStoreManager)
-            throws UserStoreException {
-        Map<String, String> claimMap = new HashMap<String, String>();
-        long timestamp = System.currentTimeMillis();
-        claimMap.put(LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, Long.toString(timestamp));
-        userStoreManager.setUserClaimValues(userName, claimMap, null);
-        return true;
-    }
+		return true;
+	}
+
+	@Override
+	public boolean doPostUpdateCredential(String userName, Object credential, UserStoreManager userStoreManager)
+			throws UserStoreException {
+		Map<String, String> claimMap = new HashMap<String, String>();
+		long timestamp = System.currentTimeMillis();
+		claimMap.put(Utils.LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, Long.toString(timestamp));
+		userStoreManager.setUserClaimValues(userName, claimMap, null);
+
+		if (log.isDebugEnabled()) {
+			log.debug("The claim uri http://wso2.org/claims/lastPasswordChangedTimestamp of " + userName
+					+ " updated with the current timestamp");
+		}
+
+		return true;
+	}
 }

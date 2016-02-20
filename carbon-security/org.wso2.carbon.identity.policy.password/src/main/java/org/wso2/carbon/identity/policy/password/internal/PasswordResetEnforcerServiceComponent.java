@@ -39,22 +39,40 @@ public class PasswordResetEnforcerServiceComponent {
 
     private static RealmService realmService;
 
+    /**
+     * 
+     * @return
+     */
     public static RealmService getRealmService() {
         return realmService;
     }
 
+    /**
+     * 
+     * @param realmService
+     */
     protected void setRealmService(RealmService realmService) {
-        log.debug("Setting the Realm Service");
+        if (log.isDebugEnabled()) {
+            log.debug("Setting the Realm Service");
+        }
         PasswordResetEnforcerServiceComponent.realmService = realmService;
     }
 
+    /**
+     * 
+     * @param ctxt
+     */
     protected void activate(ComponentContext ctxt) {
         try {
+
+            // register the connector to enforce password change upon
+            // expiration.
             PasswordChangeEnforcerOnExpiration authenticator = new PasswordChangeEnforcerOnExpiration();
             Hashtable<String, String> props = new Hashtable<String, String>();
             ctxt.getBundleContext().registerService(ApplicationAuthenticator.class.getName(), authenticator, props);
 
-            // register the custom listener as an OSGI service.
+            // register the user-operation listener to capture password change
+            // events.
             ctxt.getBundleContext().registerService(UserOperationEventListener.class.getName(),
                     new PasswordChangeUserOperantionListener(), props);
 
@@ -66,14 +84,24 @@ public class PasswordResetEnforcerServiceComponent {
         }
     }
 
+    /**
+     * 
+     * @param ctxt
+     */
     protected void deactivate(ComponentContext ctxt) {
         if (log.isDebugEnabled()) {
-            log.debug("Custom basic authenticator is deactivated");
+            log.debug("PasswordChangeEnforcerOnExpiration is deactivated");
         }
     }
 
+    /**
+     * 
+     * @param realmService
+     */
     protected void unsetRealmService(RealmService realmService) {
-        log.debug("UnSetting the Realm Service");
+        if (log.isDebugEnabled()) {
+            log.debug("Unsetting the Realm Service");
+        }
         PasswordResetEnforcerServiceComponent.realmService = null;
     }
 }

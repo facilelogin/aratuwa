@@ -31,7 +31,9 @@ import org.wso2.carbon.utils.CarbonUtils;
 public class Utils {
 
     public static final String IDM_PROPERTIES_FILE = "identity-mgt.properties";
-    public static final String PASSWORD_EXP_IN_DAYS = "Authentication.Policy.Password.Rest.Time.In.Days";
+    public static final String PASSWORD_EXP_IN_DAYS = "Authentication.Policy.Password.Reset.Time.In.Days";
+    public static final String LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM = "http://wso2.org/claims/lastPasswordChangedTimestamp";
+    public static final int DEFAULT_PASSWORD_EXP_IN_DAYS = 30;
 
     private static Properties properties = new Properties();
 
@@ -45,7 +47,7 @@ public class Utils {
     }
 
     /**
-     * loading IDM property file
+     * loading the identity-mgt.properties file.
      */
     public static void loadProperties() {
 
@@ -53,28 +55,34 @@ public class Utils {
         String configPath = CarbonUtils.getCarbonConfigDirPath() + File.separator + "identity" + File.separator;
 
         try {
-
             configPath = configPath + IDM_PROPERTIES_FILE;
             fileInputStream = new FileInputStream(new File(configPath));
             properties.load(fileInputStream);
-
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("IDM property file not found in " + configPath, e);
+            throw new RuntimeException("identity-mgt.propertie file not found in " + configPath, e);
         } catch (IOException e) {
-            throw new RuntimeException("IDM property file reading error from " + configPath, e);
+            throw new RuntimeException("identity-mgt.propertie file reading error from " + configPath, e);
         } finally {
             if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
-                } catch (Exception exx) {
-                    log.error("Error occured while closing stream :" + exx);
+                } catch (Exception e) {
+                    log.error("Error occured while closing stream :" + e);
                 }
             }
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public static int getPasswordExpirationInDays() {
-        return Integer.parseInt((String)properties.get(PASSWORD_EXP_IN_DAYS));
+        if (properties.get(PASSWORD_EXP_IN_DAYS) != null) {
+            return Integer.parseInt((String) properties.get(PASSWORD_EXP_IN_DAYS));
+        } else {
+            return DEFAULT_PASSWORD_EXP_IN_DAYS;
+        }
     }
 
 }

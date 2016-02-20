@@ -40,7 +40,6 @@ public class PasswordChangeEnforcerOnExpiration extends AbstractApplicationAuthe
 	private static final String CURRENT_PWD = "CURRENT_PWD";
 	private static final String NEW_PWD = "NEW_PWD";
 	private static final String NEW_PWD_CONFIRMATION = "NEW_PWD_CONFIRMATION";
-	public static final String LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM = "http://wso2.org/claims/lastPasswordChangedTimestamp";
 
 	private static final Log log = LogFactory.getLog(PasswordChangeEnforcerOnExpiration.class);
 
@@ -153,7 +152,7 @@ public class PasswordChangeEnforcerOnExpiration extends AbstractApplicationAuthe
 
 		try {
 			passwordLastChangedTime = userStoreManager.getUserClaimValue(tenantAwareUsername,
-					LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, null);
+					Utils.LAST_PASSWORD_CHANGED_TIMESTAMP_CLAIM, null);
 		} catch (org.wso2.carbon.user.core.UserStoreException e) {
 			// this exception will be handled by the framework.
 			throw new AuthenticationFailedException(
@@ -273,10 +272,6 @@ public class PasswordChangeEnforcerOnExpiration extends AbstractApplicationAuthe
 			if (stepConfig.getAuthenticatedUser() != null && stepConfig.getAuthenticatedAutenticator()
 					.getApplicationAuthenticator() instanceof LocalApplicationAuthenticator) {
 				authenticatedUser = stepConfig.getAuthenticatedUser();
-
-				if (log.isDebugEnabled()) {
-					log.debug("username :" + authenticatedUser.toString());
-				}
 				break;
 			}
 		}
