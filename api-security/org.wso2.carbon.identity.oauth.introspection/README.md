@@ -30,7 +30,8 @@
 
      Response: 
      { "username":"admin@carbon.super", 
-       "nbf":3272, "active":true, 
+       "nbf":3272, 
+       "active":true, 
        "token_type":"bearer", 
        "client_id":"LUG28MI5yjL5dATxQWdYGhDLSywa" 
      } 
@@ -48,7 +49,8 @@
      Response: 
       { "username":"admin@carbon.super", 
         "scope":"test1 test2 ", 
-        "nbf":3240, "active":true, 
+        "nbf":3240, 
+        "active":true, 
         "token_type":"bearer", 
         "client_id":"LUG28MI5yjL5dATxQWdYGhDLSywa" 
       }
