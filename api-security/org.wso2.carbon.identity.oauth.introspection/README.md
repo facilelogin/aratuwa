@@ -6,6 +6,7 @@
 
  ```javascript
      Empty Token:
+     
      curl -k -H 'Content-Type: application/x-www-form-urlencoded' -X POST --data 'token=' https://localhost:9443/introspect
      
      Response: {"active":false} 
