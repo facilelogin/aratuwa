@@ -10,5 +10,11 @@
      curl -k -H 'Content-Type: application/x-www-form-urlencoded' -X POST --data 'token=' https://localhost:9443/introspect
      
      Response: {"active":false} 
-     
+```
+ ```javascript
+     Invalid Token 
+
+     curl -k -H 'Content-Type: application/x-www-form-urlencoded' -X POST --data 'token=Bjhk98792k9hkjhk' https://localhost:9443/introspect 
+
+     Response: {"active":false,"token_type":"bearer"} 
 ```
