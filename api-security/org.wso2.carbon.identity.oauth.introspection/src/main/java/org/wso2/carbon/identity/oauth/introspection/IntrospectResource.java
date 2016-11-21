@@ -72,7 +72,7 @@ public class IntrospectResource {
 	    // Note that a properly formed and authorized query for an inactive or otherwise invalid token (or a token
 	    // the protected resource is not allowed to know about) is not considered an error response by this
 	    // specification.
-	    return Response.status(Response.Status.BAD_REQUEST).entity("{'error': 'Invalid input'}").build();
+	    return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\": \"Invalid input\"}").build();
 	}
 
 	// first we need to validate the access token against the OAuth2TokenValidationService OSGi service.
@@ -94,7 +94,7 @@ public class IntrospectResource {
 		log.debug("The error why token is made inactive: " + response.getError());
 	    }
 	    // the client needs not to know about why exactly the token is not active.
-	    return Response.status(Response.Status.OK).entity("{'active':false}").build();
+	    return Response.status(Response.Status.OK).entity("{\"active\":false}").build();
 	}
 
 	IntrospectionResponseBuilder respBuilder = new IntrospectionResponseBuilder().setActive(response.isActive())
