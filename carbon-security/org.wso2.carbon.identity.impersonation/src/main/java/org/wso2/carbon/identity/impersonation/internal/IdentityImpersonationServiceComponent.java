@@ -26,7 +26,6 @@ import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.identity.application.authentication.framework.ApplicationAuthenticator;
 import org.wso2.carbon.identity.impersonation.IdentityImpersonation;
-import org.wso2.carbon.user.core.service.RealmService;
 
 /**
  * @scr.component name="org.wso2.carbon.identity.impersonation.component" immediate="true"
@@ -34,27 +33,6 @@ import org.wso2.carbon.user.core.service.RealmService;
 public class IdentityImpersonationServiceComponent {
 
     private static Log log = LogFactory.getLog(IdentityImpersonationServiceComponent.class);
-
-    private static RealmService realmService;
-
-    /**
-     * 
-     * @return
-     */
-    public static RealmService getRealmService() {
-        return realmService;
-    }
-
-    /**
-     * 
-     * @param realmService
-     */
-    protected void setRealmService(RealmService realmService) {
-        if (log.isDebugEnabled()) {
-            log.debug("Setting the Realm Service");
-        }
-        IdentityImpersonationServiceComponent.realmService = realmService;
-    }
 
     /**
      * 
@@ -84,16 +62,5 @@ public class IdentityImpersonationServiceComponent {
         if (log.isDebugEnabled()) {
             log.debug("org.wso2.carbon.identity.impersonation.component is deactivated");
         }
-    }
-
-    /**
-     * 
-     * @param realmService
-     */
-    protected void unsetRealmService(RealmService realmService) {
-        if (log.isDebugEnabled()) {
-            log.debug("Unsetting the Realm Service");
-        }
-        IdentityImpersonationServiceComponent.realmService = null;
     }
 }
