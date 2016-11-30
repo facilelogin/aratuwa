@@ -92,11 +92,10 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
-                        <Private-Package>org.wso2.carbon.identity.policy.password.internal
-                        </Private-Package>
+                        <Private-Package>org.wso2.carbon.identity.impersonation.internal</Private-Package>
                         <Export-Package>
                             !org.wso2.carbon.identity.impersonation.internal,
-                            org.wso2.carbon.identity.policy.impersonation.*
+                            org.wso2.carbon.identity.impersonation.*
                         </Export-Package>
                         <Import-Package>
                             javax.servlet.http; version="${imp.pkg.version.javax.servlet}",
