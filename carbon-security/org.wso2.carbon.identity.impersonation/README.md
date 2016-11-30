@@ -16,7 +16,8 @@
 * Main --> Service Providers --> List --> Pick the service provider you want enable impersonation
 * Under Local and Outbound Authentication Configuration --> Advanced
 * Add step-1 and pick basic as the local authenticator
-* Add step-2 and pick local-idp (with the impersonation authenticator) as the federated authenticator - and save the configuration.
+* Add step-2 and pick local-idp (with the impersonation authenticator) as the federated authenticator and check both the options under this step: Use subject identifier from this step and Use attributes from this step
+* Save the configuration.
 
 ##Define who can impersonate and who can be impersonated
 * Create a role called impadmin and add users who can impersonate other users.
