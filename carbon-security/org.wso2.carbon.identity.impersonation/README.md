@@ -28,5 +28,6 @@
 * Main --> Claims --> Add --> Add New Claim --> Select http://wso2.org/oidc dialect and give impersonation_admin as the claim uri and impersonation_admin as the mapped attribute and save the configuration.
 * Go to the URL https://localhost:9443/carbon/resources/resource.jsp?region=region3&item=resource_browser_menu&viewType=std&path=/_system/config/oidc 
 * Expand Properties
-* Edit the property with the name openid and append impersonation_admin add the end of it's value, separated by a comma.
+* Edit the property with the name openid and append impersonation_admin at the end of it's value, separated by a comma.
+* Edit the service provider you want to enable the impersonation and under the Claim Configuration, under the Requested Claims, select http://wso2.org/claims/impersonation_admin. 
 
