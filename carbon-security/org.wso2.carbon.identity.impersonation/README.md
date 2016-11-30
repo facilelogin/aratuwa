@@ -2,7 +2,7 @@
 
 ##Deploying the connector
 
-* Download https://github.com/facilelogin/aratuwa/blob/master/carbon-security/org.wso2.carbon.identity.impersonation/lib/org.wso2.carbon.identity.impersonation-1.0.0.jar and copy it to IS_HOME/repository/components/lib. 
+* Download https://github.com/facilelogin/aratuwa/blob/master/carbon-security/org.wso2.carbon.identity.impersonation/lib/org.wso2.carbon.identity.impersonation-1.0.0.jar and copy it to IS_HOME/repository/components/dropins. 
 * Copy https://github.com/facilelogin/aratuwa/blob/master/carbon-security/org.wso2.carbon.identity.impersonation/src/main/resources/imp-user.jsp to IS_HOME/repository/deployment/server/webapps/authenticationendpoint
 * Copy https://github.com/facilelogin/aratuwa/blob/master/carbon-security/org.wso2.carbon.identity.impersonation/src/main/resources/application-authentication.xml to IS_HOME/repository/conf/identity/.
 
