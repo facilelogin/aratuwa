@@ -20,8 +20,8 @@
 * Save the configuration.
 
 ##Define who can impersonate and who can be impersonated
-* Create a role called impadmin and add users who can impersonate other users.
-* Create a role called impuser and add users who can be impersonated
+* Create an internal role (domain is internal) called impadmin and add users who can impersonate other users.
+* Create an internal role (domain is internal) called impuser and add users who can be impersonated
 * The abolve role names can be configured from IS_HOME/repository/conf/identity/application-authentication.xml under the section identity-impersonation AuthenticationConfig.
 
 ##Get back the name of the impersonating user in the SAML/OIDC response
