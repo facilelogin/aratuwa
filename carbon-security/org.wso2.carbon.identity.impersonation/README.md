@@ -22,3 +22,11 @@
 * Create a role called impadmin and add users who can impersonate other users.
 * Create a role called impuser and add users who can be impersonated
 * The abolve role names can be configured from IS_HOME/repository/conf/identity/application-authentication.xml under the section identity-impersonation AuthenticationConfig.
+
+##Get back the name of the impersonating user in the SAML/OIDC response
+* Main --> Claims --> Add --> Add New Claim --> Select http://wso2.org/claims dialect and give http://wso2.org/claims/impersonation_admin as the claim uri and impersonation_admin as the mapped attribute and save the configuration.
+* Main --> Claims --> Add --> Add New Claim --> Select http://wso2.org/oidc dialect and give impersonation_admin as the claim uri and impersonation_admin as the mapped attribute and save the configuration.
+* Go to the URL https://localhost:9443/carbon/resources/resource.jsp?region=region3&item=resource_browser_menu&viewType=std&path=/_system/config/oidc 
+* Expand Properties
+* Edit the property with the name openid and append impersonation_admin add the end of it's value, separated by a comma.
+
