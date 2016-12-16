@@ -2,7 +2,7 @@
 
 * Edit the properties in wso2is/5.3.0/env.sh.
 
-```javascript
+```
 #export SERVER_URL=https://localhost:8243
 export SERVER_URL=https://localhost:9443/oauth2
 # WSO2 Identity Server XACML PDP endpoint
@@ -31,7 +31,7 @@ export FLASK_APP=res-server.py
 export API_EP=https://localhost:8245/bc/v1.0.0/latestblock
 ```
 * Before executing any python script, source the env.sh
-```javascript
+```
 source ./env.sh
 ```
 * Execute the corresponding python script.
