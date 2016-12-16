@@ -28,7 +28,7 @@ if (response.status_code == 200):
     print('Access Token: ' + access_token)
 
     if (call_api == 'true'):
-        api_ep = 'https://localhost:8245/bc/v1.0.0/latestblock'
+        api_ep = os.environ["API_EP"]
         api_headers = {'Authorization': 'Bearer ' + access_token}
         response = requests.get(api_ep,headers=api_headers,verify=False)
         print(response.text)

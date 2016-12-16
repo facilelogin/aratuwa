@@ -11,7 +11,6 @@ def base64_url_decode(inp):
     inp += "="*padding_factor
     return base64.b64decode(unicode(inp).translate(dict(zip(map(ord, u'-_'), u'+/'))))
 
-
 url = os.environ["SERVER_URL"] + "/token"
 clientid=os.environ["CLIENTID"]
 secret=os.environ["SECRET"]

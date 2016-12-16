@@ -14,4 +14,6 @@ access_token=os.environ["TOKEN"]
 data = 'token='+access_token
 
 response = requests.post(url, data=data,headers=headers,verify=False)
+
+#prints the introspection response.
 print(response.text)
