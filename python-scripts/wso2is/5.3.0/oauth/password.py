@@ -22,7 +22,6 @@ scope=os.environ['SCOPE']
 data = 'grant_type=password&username='+username+'&password='+password+'&scope='+scope
 
 response = requests.post(url, data=data,headers=headers,verify=False)
-print(response.text)
 
 if (response.status_code == 200):
     json_data=json.loads(response.text)
@@ -32,8 +31,11 @@ if (response.status_code == 200):
         print('JWT header: ' + base64_url_decode(jwt[0]))
         print('JWT body: ' + base64_url_decode(jwt[1]))
 
-    access_token=json_data['access_token']
-    print('Access Token: ' + access_token)
+    print('Access Token: ' + json_data['access_token'])
+    print('Refresh Token: ' + json_data['refresh_token'])
+    print('Scope(s): ' + json_data['scope'])
+    print('Expires In: ' + str(json_data['expires_in']))
+    print('Token Type: ' + json_data['token_type'])
 
     if (call_api == 'true'):
         api_ep =  os.environ["API_EP"]

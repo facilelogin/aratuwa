@@ -13,7 +13,7 @@ export SECRET=3wa0BRg9l4yW7ZDPnTtiJHfv8yoa
 # the username used for both resource owner password grant type and to authenticate to the XACML PDP
 export USERNAME=admin
 # the password used for both resource owner password grant type and to authenticate to the XACML PDP
-export PASSWORD=admint
+export PASSWORD=admin
 # the scope used in requesting an access token
 export SCOPE=latest_block
 # the oauth 2.0 redirect_uri used in authorization code and implicit grant types.
