@@ -32,7 +32,7 @@
 ```
 * Before executing any python script, source the env.sh
 ```
-source ./env.sh
+  source ./env.sh
 ```
 * Execute the corresponding python script.
 * OAuth 2.0 client credentials grant type.
@@ -43,9 +43,9 @@ source ./env.sh
   Scope(s): latest_block
   Expires In: 2846
   Token Type: Bearer
- ````
+````
 * OAuth 2.0 client password grant type.
- ````
+````
   $ python password.py
 
   Access Token: de17eec7-041b-3ebf-8ee3-364a53f81f1d
@@ -53,4 +53,4 @@ source ./env.sh
   Scope(s): latest_block
   Expires In: 2295
   Token Type: Bearer
-  ````
+````
