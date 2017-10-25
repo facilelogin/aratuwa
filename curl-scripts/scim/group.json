@@ -1,0 +1,10 @@
+{"schemas":["urn:scim:schemas:core:1.0"],
+ "displayName" : "OSDC",
+ "externalId" : "OSDC",
+ "members": [
+    {
+      "value": "f64e6507-756d-4a14-ac43-c9d02167f411",
+      "display": "prabath"
+    }
+ ]
+}

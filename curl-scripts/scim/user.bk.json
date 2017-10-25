@@ -1,0 +1,10 @@
+{
+   "username": "prabath@wso2.com",
+   "realm": "EXTERNAL",
+    "claims": [
+         {
+            "claim_uri": "http://wso2.sample.one/claims/postalcode",
+            "value": "95134"
+         }
+      ]
+}

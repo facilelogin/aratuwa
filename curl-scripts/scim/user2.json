@@ -1,0 +1,35 @@
+{  
+   "username":"siriwardena.prabath@gmail.com",
+   "realm":"EXTERNAL",
+   "password":"admin123",
+   "claims":[  
+      {  
+         "claim_uri":"http://wso2.sample.one/claims/telephone",
+         "value":"+94718096732"
+      },
+      {  
+         "claim_uri":"http://wso2.sample.one/claims/postalcode",
+         "value":"95134"
+      },
+      {  
+         "claim_uri":"http://common.verifone.com/claims/dob",
+         "value":"11/12/1950"
+      },
+      {  
+         "claim_uri":"http://common.verifone.com/claims/country",
+         "value":"USA"
+      },
+      {  
+         "claim_uri":"http://common.verifone.com/claims/emailaddress",
+         "value":"siriwardena.prabath@gmail.com"
+      },
+      {  
+         "claim_uri":"http://common.verifone.com/claims/givenname",
+         "value":"Prabath"
+      },
+      {  
+         "claim_uri":"http://common.verifone.com/claims/lastname",
+         "value":"Siriwardena"
+      }
+   ]
+}
