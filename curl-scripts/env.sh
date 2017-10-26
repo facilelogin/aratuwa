@@ -14,10 +14,10 @@ export SCIM_USER_EP=https://localhost:9443/wso2/scim/Users
  
 
 # client id
-export CLIENTID=561nQUr_raHHAQ9UAlMhdlhE9RQa
+export CLIENTID=iYt99MAxu81lFTHA5P9spmD5tasa
 
 # client secret
-export CLIENTSECRET=m5ePqgn6RYelwQZboJKVw9Mkcbga
+export CLIENTSECRET=WbezGoQDo1iyFqLAbQHjQ1LNByYa
 
 # the username used for both resource owner password grant type and to authenticate to the XACML PDP
 export USERNAME=admin
@@ -31,6 +31,3 @@ export SCOPE=openid
 # the oauth 2.0 redirect_uri used in authorization code and implicit grant types.
 export REDIRECTURI=http://127.0.0.1:5000/
 
-
-# this is the business api endpoint, hosted in wso2 api manager.
-export API_EP=https://localhost:8245/bc/v1.0.0/latestblock
