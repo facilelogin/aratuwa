@@ -1,0 +1,18 @@
+
+curl -v -X POST --basic -u $CLIENTID:$CLIENTSECRET -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -k -d "grant_type=password&username=$USERNAME&password=$PASSWORD" https://localhost:9443/oauth2/token
+
+
+curl -v -k  --user $USERNAME:$PASSWORD -d @add-user.json --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users
+
+curl  -k --user $USERNAME:$PASSWORD https://localhost:9443/wso2/scim/Users
+
+
+curl -v -X POST --basic -u $CLIENTID:$CLIENTSECRET -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -k -d "grant_type=client_credentials" https://localhost:9443/oauth2/token
+
+curl -k   -H "Authorization: Bearer $TOKEN"  -d @add-user.json --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users
+
+echo https://localhost:9443/oauth2/authorize?fidp='$IDP_DOMAIN1'&client_id='$CLIENT_ID'&scope=openid&redirect_uri=https://myapp/callback&response_type=code'
+
+
+
+

@@ -6,7 +6,12 @@ export INTROSPECT_EP=https://localhost:9443/oauth2/introspect
 
 export REVOKE_EP=https://localhost:9443/oauth2/revoke
 
-export PDP_SERVER_URL=https://localhost:9443/api/identity/entitlement/Decision/pdp
+export PDP_SERVER_URL=https://localhost:9443/api/identity/entitlement/decision/pdp
+
+export SCIM_GROUP_EP=https://localhost:9443/wso2/scim/Groups
+
+export SCIM_USER_EP=https://localhost:9443/wso2/scim/Users
+ 
 
 # client id
 export CLIENTID=561nQUr_raHHAQ9UAlMhdlhE9RQa

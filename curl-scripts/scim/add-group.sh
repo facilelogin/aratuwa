@@ -1,0 +1,1 @@
+curl -k   -H "Authorization: Bearer $TOKEN"  -d @group.json --header "Content-Type:application/json" $SCIM_GROUP_EP
