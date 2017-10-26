@@ -1,0 +1,1 @@
+curl -v -X POST --basic -u $CLIENTID:$CLIENTSECRET -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -k -d "token=$TOKEN&token_type_hint=access_token" $REVOKE_EP
