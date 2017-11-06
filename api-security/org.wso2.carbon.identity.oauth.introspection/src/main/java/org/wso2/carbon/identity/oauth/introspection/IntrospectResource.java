@@ -32,22 +32,6 @@ public class IntrospectResource {
      *        token end-point defined in OAuth 2.0 [RFC6749], Section 5.1. For refresh tokens, this is the
      *        "refresh_token" value returned from the token end-point as defined in OAuth 2.0 [RFC6749], Section 5.1.
      *        Other token types are outside the scope of this specification.
-     * @return
-     */
-    @POST
-    public Response introspect(@FormParam("token") String token) {
-	// if no token type hint provided, use the default one: bearer.
-	// this is just a workaround. ideally findOAuthConsumerIfTokenIsValid should return back the token type, when
-	// token_type_hint is not specified.
-	return introspect(token, DEFAULT_TOKEN_TYPE_HINT);
-    }
-
-    /**
-     * 
-     * @param token The string value of the token. For access tokens, this is the "access_token" value returned from the
-     *        token end-point defined in OAuth 2.0 [RFC6749], Section 5.1. For refresh tokens, this is the
-     *        "refresh_token" value returned from the token end-point as defined in OAuth 2.0 [RFC6749], Section 5.1.
-     *        Other token types are outside the scope of this specification.
      * @param tokenTypeHint A hint about the type of the token submitted for introspection. The protected resource MAY
      *        pass this parameter to help the authorization server optimize the token lookup. If the server is unable to
      *        locate the token using the given hint, it MUST extend its search across all of its supported token types.
@@ -80,7 +64,13 @@ public class IntrospectResource {
 	request = new OAuth2TokenValidationRequestDTO();
 	OAuth2TokenValidationRequestDTO.OAuth2AccessToken accessToken = request.new OAuth2AccessToken();
 	accessToken.setIdentifier(token);
-	accessToken.setTokenType(tokenTypeHint);
+
+	if(tokenTypeHint != null && !tokenTypeHint.isEmpty()) {
+		accessToken.setTokenType(tokenTypeHint);
+	}else {
+		accessToken.setTokenType("bearer");
+	}
+
 	request.setAccessToken(accessToken);
 
 	// get a reference to the OAuth2TokenValidationService OSGi service.
@@ -102,7 +92,7 @@ public class IntrospectResource {
 		.setTokenType(DEFAULT_TOKEN_TYPE).setClientId(response.getClientId()).setIssuedAt(response.getIat())
 		.setExpiration(response.getExp());
 
-	if (tokenTypeHint.equalsIgnoreCase(JWT_TOKEN_TYPE)) {
+	if (accessToken.getTokenType().equalsIgnoreCase(JWT_TOKEN_TYPE)) {
 	    // we need to handle JWT token differently.
 	    // the introspection response has parameters specific to the JWT token.
 	    respBuilder.setAudience(response.getAud()).setJwtId(response.getJti()).setSubject(response.getSub())
