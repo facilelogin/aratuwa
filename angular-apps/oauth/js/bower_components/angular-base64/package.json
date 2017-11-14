@@ -1,0 +1,63 @@
+{
+  "_from": "angular-base64",
+  "_id": "angular-base64@2.0.5",
+  "_inBundle": false,
+  "_integrity": "sha1-EyVVYq0cjoygm5xLH075ZqxM0JM=",
+  "_location": "/angular-base64",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angular-base64",
+    "name": "angular-base64",
+    "escapedName": "angular-base64",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-base64/-/angular-base64-2.0.5.tgz",
+  "_shasum": "13255562ad1c8e8ca09b9c4b1f4ef966ac4cd093",
+  "_spec": "angular-base64",
+  "_where": "/Users/prabathsiriwardana/facilelogin/aratuwa/angular-apps/oauth",
+  "author": {
+    "name": "Pete Martin"
+  },
+  "bugs": {
+    "url": "https://github.com/ninjatronic/angular-base64/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "angular": ">= 1.0.8"
+  },
+  "deprecated": false,
+  "description": "Base64 Conversion for AngularJS Apps",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-cli": "",
+    "grunt-contrib-clean": "",
+    "grunt-contrib-concat": "",
+    "grunt-contrib-copy": "",
+    "grunt-contrib-jshint": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-watch": "",
+    "grunt-notify": "",
+    "grunt-strip": "",
+    "grunt-text-replace": ""
+  },
+  "homepage": "https://github.com/ninjatronic/angular-base64",
+  "license": "MIT",
+  "main": "angular-base64.js",
+  "name": "angular-base64",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninjatronic/angular-base64.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.0.5"
+}
