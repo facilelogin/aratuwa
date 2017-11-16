@@ -14,10 +14,10 @@ export SCIM_USER_EP=https://localhost:9443/wso2/scim/Users
  
 
 # client id
-export CLIENTID=iYt99MAxu81lFTHA5P9spmD5tasa
+export CLIENTID=sVgtdpO1c5UL83TFtfLJfkkdMmka
 
 # client secret
-export CLIENTSECRET=WbezGoQDo1iyFqLAbQHjQ1LNByYa
+export CLIENTSECRET=2fzWw3xcfvGS4qCXqBu_pvyfe8Ia
 
 # the username used for both resource owner password grant type and to authenticate to the XACML PDP
 export USERNAME=admin
@@ -26,7 +26,7 @@ export USERNAME=admin
 export PASSWORD=admin
 
 # the scope used in requesting an access token
-export SCOPE=openid
+export SCOPE=read
 
 # the oauth 2.0 redirect_uri used in authorization code and implicit grant types.
 export REDIRECTURI=http://127.0.0.1:5000/
