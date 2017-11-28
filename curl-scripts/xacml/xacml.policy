@@ -1,0 +1,49 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"  PolicyId="buy-beer-authz-policy-with-time-range" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0">
+   <Target>
+      <AnyOf>
+         <AllOf>
+            <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[a-zA-Z]@facilelogin.com</AttributeValue>
+               <AttributeDesignator AttributeId="http://wso2.org/claims/emailaddress" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+            </Match>
+         </AllOf>
+      </AnyOf>
+   </Target>
+   <Rule Effect="Permit" RuleId="permit_rule">
+      <Target>
+         <AnyOf>
+            <AllOf>
+               <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">beer</AttributeValue>
+                  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+               </Match>
+            </AllOf>
+         </AnyOf>
+         <AnyOf>
+            <AllOf>
+               <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">buy</AttributeValue>
+                  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+               </Match>
+            </AllOf>
+         </AnyOf>
+      </Target>
+      <Condition>
+         <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:time-in-range">
+               <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only">
+                  <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" DataType="http://www.w3.org/2001/XMLSchema#time" MustBePresent="true"></AttributeDesignator>
+               </Apply>
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">10:00:00</AttributeValue>
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">20:00:00</AttributeValue>
+            </Apply>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than">
+               <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                  <AttributeDesignator AttributeId="http://wso2.org/claims/dob" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"></AttributeDesignator>
+               </Apply>
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">21</AttributeValue>
+            </Apply>
+         </Apply>
+      </Condition>
+   </Rule>
+</Policy>
