@@ -1,0 +1,10 @@
+<xsd:registerOAuthApplicationData xmlns:xsd="http://org.apache.axis2/xsd" xmlns:xsd1="http://dto.oauth.identity.carbon.wso2.org/xsd">
+         <xsd:application>
+            <xsd1:OAuthVersion>OAuth-2.0</xsd1:OAuthVersion>
+            <xsd1:applicationName>OAUTH_APP_NAME</xsd1:applicationName>
+            <xsd1:callbackUrl>HTTP://CALLBAKURL</xsd1:callbackUrl>
+            <xsd1:oauthConsumerKey>CLIENTID</xsd1:oauthConsumerKey>
+            <xsd1:oauthConsumerSecret>CLIENT_SECRET</xsd1:oauthConsumerSecret>
+            <xsd1:grantTypes>refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer implicit password client_credentials iwa:ntlm authorization_code</xsd1:grantTypes>
+         </xsd:application>
+</xsd:registerOAuthApplicationData>

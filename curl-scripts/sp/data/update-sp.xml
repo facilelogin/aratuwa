@@ -1,0 +1,61 @@
+<ns3:updateApplication xmlns:ns3="http://org.apache.axis2/xsd" xmlns:ax2162="http://common.application.identity.carbon.wso2.org/xsd"
+        xmlns:ax2164="http://model.common.application.identity.carbon.wso2.org/xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax2164:ServiceProvider">
+
+   <ns3:serviceProvider>
+
+        <ax2164:applicationID>1</ax2164:applicationID>
+        <ax2164:applicationName>SP_APP</ax2164:applicationName>
+        <ax2164:description>SP_DESCRIPTION</ax2164:description>
+
+        <ax2164:claimConfig xsi:type="ax2164:ClaimConfig">
+            <ax2164:alwaysSendMappedLocalSubjectId>false</ax2164:alwaysSendMappedLocalSubjectId>
+            <ax2164:localClaimDialect>true</ax2164:localClaimDialect>
+            <ax2164:roleClaimURI xsi:nil="true"/>
+            <ax2164:userClaimURI xsi:nil="true"/>
+        </ax2164:claimConfig>
+
+
+        <inboundAuthenticationConfig xmlns="http://model.common.application.identity.carbon.wso2.org/xsd">
+         <inboundAuthenticationRequestConfigs>
+            <friendlyName>OAUTH_APP_NAME</friendlyName>
+            <inboundAuthKey>CLIENTID</inboundAuthKey>
+            <inboundAuthType>oauth2</inboundAuthType>
+            <inboundConfigType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="1" />
+         </inboundAuthenticationRequestConfigs>
+        </inboundAuthenticationConfig>
+
+        <ax2164:inboundProvisioningConfig xsi:type="ax2164:InboundProvisioningConfig">
+            <ax2164:dumbMode>false</ax2164:dumbMode>
+            <ax2164:provisioningEnabled>false</ax2164:provisioningEnabled>
+            <ax2164:provisioningUserStore xsi:nil="true"/>
+        </ax2164:inboundProvisioningConfig>
+
+        <ax2164:localAndOutBoundAuthenticationConfig xsi:type="ax2164:LocalAndOutboundAuthenticationConfig">
+            <ax2164:alwaysSendBackAuthenticatedListOfIdPs>false</ax2164:alwaysSendBackAuthenticatedListOfIdPs>
+            <ax2164:authenticationStepForAttributes xsi:nil="true"/>
+            <ax2164:authenticationStepForSubject xsi:nil="true"/>
+            <ax2164:authenticationType>default</ax2164:authenticationType>
+            <ax2164:enableAuthorization>false</ax2164:enableAuthorization>
+            <ax2164:subjectClaimUri xsi:nil="true"/>
+            <ax2164:useTenantDomainInLocalSubjectIdentifier>false</ax2164:useTenantDomainInLocalSubjectIdentifier>
+            <ax2164:useUserstoreDomainInLocalSubjectIdentifier>false</ax2164:useUserstoreDomainInLocalSubjectIdentifier>
+        </ax2164:localAndOutBoundAuthenticationConfig>
+
+        <ax2164:outboundProvisioningConfig xsi:type="ax2164:OutboundProvisioningConfig">
+            <ax2164:provisionByRoleList xsi:nil="true"/>
+        </ax2164:outboundProvisioningConfig>
+
+
+        <ax2164:permissionAndRoleConfig xsi:type="ax2164:PermissionsAndRoleConfig"/>
+        <ax2164:saasApp>false</ax2164:saasApp>
+
+        <ax2164:owner xsi:type="ax2164:User">
+            <ax2164:tenantDomain>carbon.super</ax2164:tenantDomain>
+            <ax2164:userName>admin</ax2164:userName>
+            <ax2164:userStoreDomain>PRIMARY</ax2164:userStoreDomain>
+        </ax2164:owner>
+
+   </ns3:serviceProvider>
+
+</ns3:updateApplication>

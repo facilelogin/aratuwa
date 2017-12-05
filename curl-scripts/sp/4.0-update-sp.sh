@@ -1,0 +1,1 @@
+curl -k --basic -u  admin:admin  --header "Content-Type: text/xml;charset=UTF-8" -d @data/update-sp.xml https://localhost:9443/services/IdentityApplicationManagementService/updateApplication
