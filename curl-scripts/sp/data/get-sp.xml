@@ -1,3 +1,3 @@
 <ns3:getApplication xmlns:ns3="http://org.apache.axis2/xsd">
-            <ns3:applicationName>SP_NAME</ns3:applicationName>
+            <ns3:applicationName>SP_APP</ns3:applicationName>
 </ns3:getApplication>
