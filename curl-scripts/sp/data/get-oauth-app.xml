@@ -1,0 +1,3 @@
+<xsd:getOAuthApplicationData xmlns:xsd="http://org.apache.axis2/xsd" xmlns:xsd1="http://dto.oauth.identity.carbon.wso2.org/xsd">
+      <xsd1:consumerKey>CLIENTID</xsd1:consumerKey>
+</xsd:getOAuthApplicationData>

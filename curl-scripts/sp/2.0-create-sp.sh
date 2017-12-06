@@ -1,1 +1,1 @@
-curl -k --basic -u  admin:admin  --header "Content-Type: text/xml;charset=UTF-8" -d @data/create-sp.xml https://localhost:9443/services/IdentityApplicationManagementService/createApplication
+curl -k --basic -u  $USERNAME:$PASSWORD  --header "Content-Type: text/xml;charset=UTF-8" -d @data/create-sp.xml $IS_EP/services/IdentityApplicationManagementService/createApplication

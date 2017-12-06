@@ -1,0 +1,3 @@
+<xsd:deleteApplication xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://org.apache.axis2/xsd">
+    <xsd:applicationName>SP_APP</xsd:applicationName>
+</xsd:deleteApplication>
