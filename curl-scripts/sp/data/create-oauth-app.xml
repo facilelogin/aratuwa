@@ -2,9 +2,9 @@
          <xsd:application>
             <xsd1:OAuthVersion>OAuth-2.0</xsd1:OAuthVersion>
             <xsd1:applicationName>OAUTH_APP_NAME</xsd1:applicationName>
-            <xsd1:callbackUrl>HTTPS://CALLBACK</xsd1:callbackUrl>
             <xsd1:oauthConsumerKey>CLIENTID</xsd1:oauthConsumerKey>
             <xsd1:oauthConsumerSecret>CLIENTSECRET</xsd1:oauthConsumerSecret>
+            <xsd1:callbackUrl>HTTPS://CALLBACK</xsd1:callbackUrl>
             <xsd1:grantTypes>refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer implicit password client_credentials iwa:ntlm authorization_code</xsd1:grantTypes>
             <xsd1:pkceMandatory>true</xsd1:pkceMandatory>
             <xsd1:pkceSupportPlain>false</xsd1:pkceSupportPlain>
