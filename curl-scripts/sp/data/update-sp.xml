@@ -3,7 +3,7 @@
 
          <ns3:serviceProvider>
 
-            <ns1:applicationID xmlns:ns1="http://model.common.application.identity.carbon.wso2.org/xsd">6</ns1:applicationID>
+            <ns1:applicationID xmlns:ns1="http://model.common.application.identity.carbon.wso2.org/xsd">1</ns1:applicationID>
             <ns1:applicationName xmlns:ns1="http://model.common.application.identity.carbon.wso2.org/xsd">SP_APP</ns1:applicationName>
 
             <claimConfig xmlns="http://model.common.application.identity.carbon.wso2.org/xsd">
