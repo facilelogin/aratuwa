@@ -1,0 +1,23 @@
+1) sh 1-rs-pat.sh
+
+2) export PAT=9584da7e-6fb6-3eb7-88f1-7893397fd268
+
+3) Make sure resource name is unique in 2-rs-resource-rg.sh
+
+4) sh 2-rs-resource-rg.sh
+
+5) export RESID=XXXXX
+
+6) Update XACML policy
+
+7) sh 3-rs-permission.sh
+
+8) export TICKET=XXXX
+
+9) sh 4-app-password.sh
+
+10) export IDTOKEN=XXXX
+
+11) sh 5-app-rpt.sh
+
+12) export TOKEN=ec0b26ec-c7be-36f9-a4dd-5f42584ecc62
