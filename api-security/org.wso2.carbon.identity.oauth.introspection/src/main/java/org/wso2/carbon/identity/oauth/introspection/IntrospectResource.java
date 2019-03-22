@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jettison.json.JSONException;
@@ -62,7 +63,9 @@ public class IntrospectResource {
 	OAuth2TokenValidationRequestDTO request;
 	OAuth2IntrospectionResponseDTO response;
 
-	// TODO: sanitize tokentypeHint
+	if (tokenTypeHint == null) {
+		tokenTypeHint = DEFAULT_TOKEN_TYPE_HINT;
+	}
 
 	if (log.isDebugEnabled()) {
 	    log.debug("Token type hint: " + tokenTypeHint);
@@ -102,7 +105,7 @@ public class IntrospectResource {
 		.setTokenType(DEFAULT_TOKEN_TYPE).setClientId(response.getClientId()).setIssuedAt(response.getIat())
 		.setExpiration(response.getExp());
 
-	if (tokenTypeHint.equalsIgnoreCase(JWT_TOKEN_TYPE)) {
+		if (StringUtils.equalsIgnoreCase(tokenTypeHint, JWT_TOKEN_TYPE)) {
 	    // we need to handle JWT token differently.
 	    // the introspection response has parameters specific to the JWT token.
 	    respBuilder.setAudience(response.getAud()).setJwtId(response.getJti()).setSubject(response.getSub())
