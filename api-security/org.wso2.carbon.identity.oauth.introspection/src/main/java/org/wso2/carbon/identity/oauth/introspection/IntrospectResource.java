@@ -28,7 +28,7 @@ public class IntrospectResource {
     private final static String JWT_TOKEN_TYPE = "JWT";
 
     /**
-     * 
+     *
      * @param token The string value of the token. For access tokens, this is the "access_token" value returned from the
      *        token end-point defined in OAuth 2.0 [RFC6749], Section 5.1. For refresh tokens, this is the
      *        "refresh_token" value returned from the token end-point as defined in OAuth 2.0 [RFC6749], Section 5.1.
@@ -44,7 +44,7 @@ public class IntrospectResource {
     }
 
     /**
-     * 
+     *
      * @param token The string value of the token. For access tokens, this is the "access_token" value returned from the
      *        token end-point defined in OAuth 2.0 [RFC6749], Section 5.1. For refresh tokens, this is the
      *        "refresh_token" value returned from the token end-point as defined in OAuth 2.0 [RFC6749], Section 5.1.
@@ -105,7 +105,7 @@ public class IntrospectResource {
 		.setTokenType(DEFAULT_TOKEN_TYPE).setClientId(response.getClientId()).setIssuedAt(response.getIat())
 		.setExpiration(response.getExp());
 
-		if (StringUtils.equalsIgnoreCase(tokenTypeHint, JWT_TOKEN_TYPE)) {
+    if (StringUtils.equalsIgnoreCase(tokenTypeHint, JWT_TOKEN_TYPE)) {
 	    // we need to handle JWT token differently.
 	    // the introspection response has parameters specific to the JWT token.
 	    respBuilder.setAudience(response.getAud()).setJwtId(response.getJti()).setSubject(response.getSub())
